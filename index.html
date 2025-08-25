@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taiken Pan Asian</title>
+  <meta name="description" content="Pan‑Asian kitchen in Kharadi, Pune — sushi, ramen, dim sum, Thai curries, Korean favourites and Vietnamese bowls." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Premium matte palette */
+      --bg:#0a0b0e;          /* deep graphite */
+      --panel:#0c0d11;       /* panels/sheets */
+      --muted:#a1a1aa; 
+      --muted-2:#d4d4d8; 
+      --card:#0e1014; 
+      --ring:rgba(255,255,255,.10);
+      --accent:#fbbf24; 
+      --accent-2:#fde68a; 
+      --white:#fff; 
+      --black:#000;
+      --max:1200px; 
+      --radius:18px; 
+      --danger:#ef4444; 
+      --success:#22c55e;
+      /* NEW: Brand color from user */
+      --brand-green: #425225;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth; scroll-padding-top:90px}
+    body{
+      margin:0;color:var(--white);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:17px;line-height:1.6;
+      background:
+        radial-gradient(1200px 800px at 15% 0%, #12141a 0%, #0b0c10 55%, #090a0d 100%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 30%);
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 22px}
+
+    /* Typography & Underline Effects */
+    h1,h2,h3{margin:0 0 .65rem 0;font-family:Poppins,Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.18}
+    h1{font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:700}
+    h2{font-size:clamp(2.1rem,3.2vw,3rem);font-weight:700}
+    h3{font-size:clamp(1.3rem,2vw,1.6rem);font-weight:600}
+    p{margin:.6rem 0}
+    .badge{letter-spacing:.25em;text-transform:uppercase;font-size:.72rem;color:#fde68a}
+    
+    /* NEW: Typography underline effect for hero and section titles */
+    .hero h1, #story h2 {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 0.5rem;
+    }
+    .hero h1::after, #story h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40%;
+        height: 3px;
+        background: var(--accent);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+    .hero h1:hover::after, #story h2:hover::after {
+        width: 60%;
+    }
+
+    /* Buttons — bigger, clearer, with new hover effects */
+    .btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;border:0;border-radius:999px;padding:1.15rem 1.5rem;font-weight:700;cursor:pointer;text-decoration:none;font-size:1.12rem;line-height:1; transition: all 0.25s ease-out;}
+    @media (min-width:960px){.btn{font-size:1.18rem;padding:1.2rem 1.6rem}}
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,.25);
+    }
+    .btn-primary{background:var(--accent);color:#000}
+    .btn-primary:hover{background:#fcd34d; }
+    .btn-ghost{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.02);color:#fff}
+    .btn-ghost:hover{background:rgba(255,255,255,.08); border-color: var(--accent-2);}
+    .chip{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--ring);border-radius:999px;padding:.65rem 1.05rem;background:rgba(255,255,255,.04);cursor:pointer;font-weight:600; transition: all 0.25s ease; color:var(--muted-2);}
+    .chip:hover {
+        background: rgba(255,255,255,.1);
+        border-color: var(--accent-2);
+        color:var(--white);
+    }
+    .chip:focus{
+        outline:2px solid rgba(251,191,36,.12);
+        outline-offset:2px;
+        color:var(--white);
+    }
+    .chip.active{background:var(--accent);color:#000;border-color:transparent}
+
+    /* Layout */
+    section{position:relative}
+    .section{padding:5rem 0}
+    @media (min-width: 960px){.section{padding:6.5rem 0}}
+    .grid-2{display:grid;gap:2rem}
+    @media (min-width: 960px){.grid-2{grid-template-columns:1.05fr .95fr;gap:2.8rem}}
+    .card{background:rgba(255,255,255,.04);border:1px solid var(--ring);border-radius:var(--radius)}
+    .ring{outline:1px solid var(--ring);border-radius:var(--radius)}
+
+    /* Header & Nav Bar Enhancements */
+    .site-header{position:fixed;inset-inline:0;top:0;z-index:50;background:rgba(9,10,13,.65);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--ring)}
+    .nav{display:flex;align-items:center;gap:1.5rem;color:#e5e5e5; font-family: 'Poppins', sans-serif;} /* NEW: Font change */
+    .nav a, .nav button{background:none;color:inherit;border:0;font:inherit;cursor:pointer;text-decoration:none; position:relative; padding-bottom: 5px; transition: color 0.3s ease;}
+    .nav a::after, .nav button::after { /* NEW: Underline effect */
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--accent);
+        transition: width 0.3s ease-out;
+    }
+    .nav a:hover::after, .nav button:hover::after {
+        width: 100%;
+    }
+    .nav a:hover, .nav button:hover {
+        color: var(--white);
+    }
+    /* Ensure the WhatsApp anchor (and any .btn inside nav) sits at the same vertical centre as other nav items */
+    .nav .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .45rem 1rem; /* smaller vertical padding than global .btn */
+      height: 40px;         /* fixed height to align with brand image / nav line */
+      font-size: 0.98rem;
+      line-height: 1;
+      box-sizing: border-box;
+    }
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .brand img{height:42px}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
+    .burger{display:none;background:transparent;border:0;color:#fff;padding:.6rem;border-radius:999px}
+    @media (max-width: 860px){.nav{display:none}.burger{display:inline-flex}}
+    .mobile{display:none;border-top:1px solid var(--ring);background:rgba(8,9,12,.95)}
+    .mobile.open{display:block}
+    .mobile a,.mobile button{display:block;width:100%;text-align:left;padding:.9rem 0;color:#e5e5e5;background:none;border:0;text-decoration:none}
+
+    /* Hero */
+    .hero{position:relative;min-height:92vh;display:grid;place-items:center;overflow:hidden}
+    .hero-media{position:absolute;inset:0}
+    .hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.72),rgba(0,0,0,.4),#000)}
+    .hero-content{position:relative;text-align:center;padding:7.2rem 0}
+    .lead{max-width:760px;margin:1rem auto 0;color:var(--muted-2);font-size:clamp(1.05rem,1.6vw,1.25rem)}
+    .chevron{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-size:22px;color:#fff;animation:bounce 1.6s infinite}
+    @keyframes bounce{0%,100%{transform:translateY(-8%)}50%{transform:translateY(0)}}
+
+    /* Feature tiles */
+    .tiles{display:grid;gap:1rem}
+    @media (min-width:600px){.tiles{grid-template-columns:repeat(3,1fr)}}
+    .tile{border:1px solid var(--ring);border-radius:var(--radius);padding:1.1rem;background:rgba(255,255,255,.04)}
+    .tile .icon{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:999px;background:rgba(251,191,36,.2);margin-bottom:.5rem}
+    .muted{color:var(--muted)}
+
+    /* Image strips (adjusted for horizontal layout) */
+    .strip{position:relative;min-height:36vh;display:grid;align-items:end;border-radius:14px;overflow:hidden}
+    .strip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .strip .veil{position:absolute;inset:0;background:rgba(0,0,0,.58)}
+    .strip .inner{position:relative;padding:2.2rem}
+    .strip-row{display:flex;gap:1rem;align-items:stretch;flex-wrap:wrap;margin-top:1rem}
+    @media (min-width:760px){
+      .strip-row .strip{flex:1;min-width:320px}
+    }
+
+    /* STORY: full-screen phase with left content + stacked image strips on right */
+    #story{padding:0} /* remove default section padding so it becomes a full phase */
+    .story-hero{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;min-height:calc(100vh - 90px);align-items:stretch;width:100%}
+    .story-content{display:flex;flex-direction:column;justify-content:center;padding:4.2rem 2.2rem;max-width:720px}
+    .story-content h2{margin-bottom:.6rem}
+    .story-content .muted-2{max-width:740px}
+    .story-media{display:grid;grid-template-rows:1fr 1fr;gap:1rem;align-items:stretch}
+    .story-media .strip{border-radius:14px;overflow:hidden;position:relative;min-height:0}
+    .story-media .strip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .story-media .veil{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.55))}
+    .story-media .inner{position:relative;padding:2rem;color:var(--muted-2)}
+    @media (max-width:960px){
+      .story-hero{grid-template-columns:1fr;min-height:auto;padding:2rem 0}
+      .story-content{padding:2rem}
+      .story-media{grid-template-rows:1fr 1fr}
+    }
+
+    /* Why Taiken Section Enhancements */
+    .highlights{display:grid;gap:1rem}
+    @media (min-width: 720px){.highlights{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width: 1100px){.highlights{grid-template-columns:repeat(4,1fr)}}
+    .highlight{
+        border:1px solid var(--ring);
+        border-radius:var(--radius);
+        padding:1.5rem; /* Increased padding */
+        background:rgba(255,255,255,.02); /* Slightly less opacity */
+        transition: all 0.3s ease;
+        border-left: 4px solid var(--brand-green); /* NEW: Brand color accent */
+    }
+    .highlight h3 {
+        color: var(--accent-2); /* Brighter heading */
+        transition: color 0.3s ease;
+    }
+    .highlight:hover {
+        transform: translateY(-5px);
+        background: rgba(255,255,255,.06);
+        border-color: var(--brand-green);
+        box-shadow: 0 15px 30px rgba(0,0,0,.3);
+    }
+    .highlight:hover h3 {
+        color: var(--accent);
+    }
+
+    /* MENU Enhancements */
+    .filters{display:flex;gap:.6rem;flex-wrap:wrap}
+    .menu-grid{display:grid;gap:1rem;margin-top:1rem}
+    @media (min-width:760px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1100px){.menu-grid{grid-template-columns:repeat(3,1fr)}}
+    .menu-card{overflow:hidden;border:1px solid var(--ring);border-radius:var(--radius);background:rgba(255,255,255,.04); transition: transform 0.3s ease, box-shadow 0.3s ease;}
+    .menu-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(186, 102, 102, 0.4);
+    }
+    .menu-card .media{position:relative;aspect-ratio:4/3; overflow: hidden;}
+    .menu-card img{width:100%;height:100%;object-fit:cover; transition: transform 0.4s ease-out;}
+    .menu-card:hover img {
+        transform: scale(1.08); /* NEW: Image hover zoom effect */
+    }
+    .menu-card .body{padding:1rem}
+    .price{color:#fde68a;font-weight:700}
+
+    /* Gallery Sliding Animation */
+    @keyframes slide {
+        from { transform: translateX(0); }
+        to { transform: translateX(-100%); }
+    }
+    .gallery-wrap { /* NEW: Wrapper for sliding effect */
+        overflow: hidden;
+        padding: 1rem 0;
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    .gallery {
+        display: flex; /* Changed from grid to flex */
+        gap: 1rem;
+        width: fit-content;
+        animation: slide 40s linear infinite; /* NEW: Animation applied */
+    }
+    .gallery-wrap:hover .gallery {
+        animation-play-state: paused; /* Pause on hover */
+    }
+    .gallery-item { /* NEW: Item wrapper */
+        flex-shrink: 0;
+        width: 220px;
+        height: 220px;
+    }
+    .gallery img{
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+        border-radius:14px;
+        box-shadow:0 10px 30px rgba(0,0,0,.25);
+        border: 2px solid var(--ring); /* NEW: Added border */
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .gallery img:hover {
+        transform: scale(1.05);
+        border-color: var(--accent);
+    }
+
+
+    /* Team Section Glassmorphism & Hover Effects */
+    .team-wrap{max-width:var(--max);margin:0 auto}
+    .team-grid{display:grid;gap:1rem}
+    @media (min-width:760px){.team-grid{grid-template-columns:repeat(3,1fr)}}
+    .team-card{
+        padding:1.2rem;
+        border:1px solid var(--ring);
+        border-radius:16px;
+        text-align:center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    .team-card::before { /* NEW: Glass effect layer */
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,.03);
+        backdrop-filter: blur(2px);
+        z-index: 0;
+        transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    .team-card:hover::before {
+        background: rgba(66, 82, 37, 0.2); /* Use brand color */
+        backdrop-filter: blur(8px);
+    }
+    .team-card > * { /* Ensure content is above the glass layer */
+        position: relative;
+        z-index: 1;
+    }
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        border-color: var(--brand-green);
+    }
+    .avatar{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 0.85rem auto;box-shadow:0 10px 40px rgba(0,0,0,.35); border: 3px solid var(--ring); transition: border-color 0.3s ease;}
+    .team-card:hover .avatar {
+        border-color: var(--accent);
+    }
+    .member-name{font-weight:700;font-size:1.15rem;margin:.25rem 0}
+    .member-role{color:var(--muted);font-size:.98rem}
+
+    /* Testimonials */
+    .testis{display:grid;gap:1rem}
+    @media (min-width:960px){.testis{grid-template-columns:repeat(3,1fr)}}
+    .testi{border:1px solid var(--ring);border-radius:16px;background:rgba(255,255,255,.04);padding:1.2rem}
+    .stars{color:#fde68a;font-size:1.1rem}
+
+    /* Contact */
+    .contact-grid{display:grid;gap:2rem}
+    @media (min-width:960px){.contact-grid{grid-template-columns:1fr 1fr}}
+    .map{width:100%;height:340px;border:1px solid var(--ring);border-radius:var(--radius)}
+
+    /* Footer */
+    .footer{border-top:1px solid var(--ring);padding:2.2rem 0;color:#a3a3a3}
+
+    /* Sticky actions */
+    .sticky{position:fixed;left:0;right:0;bottom:0;z-index:60}
+    .sticky .bar{max-width:var(--max);margin:0 auto;padding:.8rem;border:1px solid var(--ring);border-radius:16px;background:rgba(6,7,10,.82);backdrop-filter:blur(10px);display:flex;gap:.75rem}
+    .sticky .bar .btn{flex:1}
+
+    /* Modal + form */
+    .modal{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.7);z-index:80}
+    .modal.open{display:flex}
+    @media (min-width: 860px){.modal{align-items:center;padding:2rem}}
+    .sheet{width:100%;max-width:600px;background:var(--panel);border:1px solid var(--ring);border-radius:22px 22px 0 0;box-shadow:0 40px 120px rgba(0,0,0,.5);padding:1.2rem}
+    @media (min-width: 860px){.sheet{border-radius:22px;padding:1.6rem}}
+    .sheet h3{margin:0 0 1rem 0}
+    .close{background:none;border:0;color:#d4d4d8;padding:.4rem;border-radius:999px}
+    .form-grid{display:grid;gap:.85rem}
+    .field label{display:block;font-size:.95rem;color:#c7c7cc;margin-bottom:.35rem}
+    .field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--ring);color:#fff;border-radius:14px;padding:.9rem 1rem;font:inherit;outline:none;appearance:none}
+    .field textarea::placeholder,.field input::placeholder{color:#9ca3af}
+    .field select, .field option{color:#fff;background:#111}
+    .field .error{border-color:rgba(239,68,68,.5)}
+    .error-msg{display:none;color:var(--danger);font-size:.9rem;margin-top:.35rem}
+    .error-msg.show{display:block}
+    .sheet-actions{display:flex;gap:.6rem;justify-content:flex-end;padding-top:.6rem}
+
+    /* Toast */
+    .toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(10px);background:var(--panel);border:1px solid var(--ring);border-radius:12px;padding:1rem 1.25rem;box-shadow:0 20px 60px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.35s ease;z-index:90}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .toast .tick{display:inline-block;margin-right:.5rem;color:#22c55e}
+
+    /* Utility */
+    .mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}
+    .text-center{text-align:center}
+    .muted-2{color:var(--muted-2)}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://taikenpanasian.com/img/logo.png" alt="Taiken Pan Asian" />
+      </div>
+      <nav class="nav" aria-label="Main">
+        <button onclick="scrollToId('menu')">Menu</button>
+        <button onclick="scrollToId('gallery')">Gallery</button>
+        <button onclick="scrollToId('team')">Our Team</button>
+        <button onclick="scrollToId('testimonials')">Testimonials</button>
+        <button onclick="scrollToId('contact')">Contact</button>
+        <a class="btn btn-ghost"  target="_blank" rel="noreferrer" href="https://wa.me/919175910855?text=Hi%20Taiken%2C%20I’d%20like%20to%20place%20an%20order.">WhatsApp</a>
+      </nav>
+      <button class="burger" onclick="toggleMobile()" aria-label="Open menu">☰</button>
+    </div>
+    <div id="mobile" class="mobile">
+      <div class="container">
+        <button onclick="go('menu')">Menu</button>
+        <button onclick="go('gallery')">Gallery</button>
+        <button onclick="go('team')">Our Team</button>
+        <button onclick="go('testimonials')">Testimonials</button>
+        <button onclick="go('contact')">Contact</button>
+        <a target="_blank" rel="noreferrer" href="https://wa.me/919175910855?text=Hi%20Taiken%2C%20I’d%20like%20to%20place%20an%20order." class="btn btn-ghost" style="margin:.5rem 0 1rem">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Landing">
+    <div class="hero-media">
+      <video autoplay muted loop playsinline preload="auto" class="hero-video">
+        <source src="assets/Video_Text_Removal_Request.mp4" type="video/mp4">
+        <!-- fallback image for very old browsers -->
+        <img src="assets/hero-poster.jpg" alt="Wok flames over Asian kitchen" />
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content container text-center">
+      <div class="badge">A taste of Asia</div>
+      <h1>Discover the art of Asian flavours at <span style="color:var(--accent)">Taiken</span></h1>
+      <p class="lead">From sushi and ramen to Thai curries, dim sum, Korean favourites and Vietnamese pho — premium ingredients, familiar comfort, modern craft.</p>
+      <div class="mt-3">
+        <a href="#menu" class="btn btn-primary">Explore Menu</a>
+        <a target="_blank" rel="noreferrer" href="https://wa.me/919175910855?text=Hi%20Taiken%2C%20I’d%20like%20to%20place%20an%20order." class="btn btn-ghost">Order on WhatsApp</a>
+      </div>
+    </div>
+    <div class="chevron">▾</div>
+  </section>
+
+  <!-- Story + strips -->
+  <section id="story" class="section" aria-label="Who we are">
+    <div class="story-hero">
+      <div class="story-content container">
+        <h2>Who we are</h2>
+        <p class="muted-2">We’re a Pan‑Asian kitchen that brings the soul of Asia to Pune. Think Japanese sushi and ramen, wok‑fired Chinese staples, punchy Thai curries, bold Korean umami and soothing Vietnamese bowls — crafted with premium ingredients and warm hospitality.</p>
+        <div class="mt-4">
+          <a href="#menu" class="btn btn-primary">Explore Menu</a>
+          <a target="_blank" rel="noreferrer" href="https://wa.me/919175910855?text=Hi%20Taiken%2C%20I’d%20like%20to%20place%20an%20order." class="btn btn-ghost">Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="story-media">
+        <!-- Why Pune -->
+        <div class="strip">
+          <img src="https://images.pexels.com/photos/1532771/pexels-photo-1532771.jpeg?auto=compress&cs=tinysrgb&h=1200" alt="Pune city" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/356830/pexels-photo-356830.jpeg?auto=compress&cs=tinysrgb&h=1200';" />
+          <div class="veil"></div>
+          <div class="inner">
+            <h3 style="color:var(--accent)">Why Pune</h3>
+            <p class="muted-2">Kharadi is buzzing — offices, residences and a growing food culture. We sit at Nyati Plaza, easy to reach for weekday lunches, family dinners and everything in between.</p>
+          </div>
+        </div>
+
+        <!-- Hospitality -->
+        <div class="strip">
+          <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&h=1200" alt="Asian restaurant interior" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&h=1200';" />
+          <div class="veil"></div>
+          <div class="inner">
+            <h3 style="color:var(--accent)">Hospitality, the Taiken way</h3>
+            <p class="muted-2">More than a place to eat — we blend the ease of a café, the value of a casual diner, and the attention of premium hospitality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Taiken -->
+  <section id="why" class="section" style="background:#0b0c10">
+    <div class="container">
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-end;justify-content:space-between">
+        <div>
+          <div class="badge">Why Taiken</div>
+          <h2>What this really means for Pune</h2>
+          <p class="muted-2" style="max-width:720px">Good Asian food, without the fuss. Quick for weekdays, relaxed on weekends, and priced for regular visits.</p>
+        </div>
+        <a target="_blank" rel="noreferrer" href="https://wa.me/919175910855?text=Hi%20Taiken%2C%20I’d%20like%20to%20place%20an%20order." class="btn btn-primary">Order on WhatsApp →</a>
+      </div>
+      <div class="highlights mt-8">
+        <div class="highlight"><h3>🍣 True Pan‑Asian</h3><p class="muted mt-1">Sushi to dim sum, ramen to pho — a spread that spans regions.</p></div>
+        <div class="highlight"><h3>⏱️ Everyday friendly</h3><p class="muted mt-1">Order‑friendly, dine‑in comfortable, family‑approved.</p></div>
+        <div class="highlight"><h3>⭐ Signature staples</h3><p class="muted mt-1">Fan favourites that keep you coming back.</p></div>
+        <div class="highlight"><h3>✅ Consistency</h3><p class="muted mt-1">Clear prep, trained teams, steady flavour.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="section">
+    <div class="container">
+      <div class="badge">Menu</div>
+      <h2>Explore Signatures</h2>
+      <p class="muted-2" style="max-width:720px">Short, focused selection that travels well and tastes right — perfect for Pune. Filter by a cuisine to see highlights.</p>
+
+      <div class="filters mt-6" id="filters" role="tablist" aria-label="Menu filters"  >
+        <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="chip" data-filter="sushi" role="tab">Sushi</button>
+        <button class="chip" data-filter="ramen" role="tab">Ramen</button>
+        <button class="chip" data-filter="dimsum" role="tab">Dim Sum</button>
+        <button class="chip" data-filter="thai" role="tab">Thai</button>
+        <button class="chip" data-filter="korean" role="tab">Korean</button>
+        <button class="chip" data-filter="vietnamese" role="tab">Vietnamese</button>
+      </div>
+
+      <div class="menu-grid" id="menuGrid">
+        <!-- Sushi -->
+        <article class="menu-card" data-cat="sushi">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&h=900" alt="California Roll" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/3577564/pexels-photo-3577564.jpeg?auto=compress&cs=tinysrgb&h=900';" /></div>
+          <div class="body">
+            <h3>California Roll</h3>
+            <p class="muted">Balanced, fresh, easy to love.</p>
+            <p class="price">₹329</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+        <article class="menu-card" data-cat="sushi">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/3577564/pexels-photo-3577564.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Salmon Nigiri" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/4001872/pexels-photo-4001872.jpeg?auto=compress&cs=tinysrgb&h=900';" /></div>
+          <div class="body">
+            <h3>Salmon Nigiri</h3>
+            <p class="muted">Fresh cut, seasoned rice.</p>
+            <p class="price">₹379</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+
+        <!-- Ramen -->
+        <article class="menu-card" data-cat="ramen">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/3297803/pexels-photo-3297803.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Shoyu Chicken Ramen" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/1507663/pexels-photo-1507663.jpeg?auto=compress&cs=tinysrgb&h=900';" /></div>
+          <div class="body">
+            <h3>Shoyu Chicken Ramen</h3>
+            <p class="muted">Slow broth, springy noodles, clean umami.</p>
+            <p class="price">₹399</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+        <article class="menu-card" data-cat="ramen">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/1507663/pexels-photo-1507663.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Miso Veg Ramen" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&h=900';" /></div>
+          <div class="body">
+            <h3>Miso Veg Ramen</h3>
+            <p class="muted">Clean, comforting, plant‑forward.</p>
+            <p class="price">₹359</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+
+        <!-- Dim Sum -->
+        <article class="menu-card" data-cat="dimsum">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/888721/pexels-photo-888721.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Dim Sum Basket" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1555243896-c709bfa0b564?w=1200&q=80&auto=format&fit=crop';" /></div>
+          <div class="body">
+            <h3>Dim Sum Basket</h3>
+            <p class="muted">Light, comforting, share‑ready.</p>
+            <p class="price">₹299</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+        <article class="menu-card" data-cat="dimsum">
+          <!-- UPDATED: New image for Chicken Gyoza -->
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/1059946/pexels-photo-1059946.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Chicken Gyoza" /></div>
+          <div class="body">
+            <h3>Chicken Gyoza</h3>
+            <p class="muted">Seared, juicy, sesame dip.</p>
+            <p class="price">₹339</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+
+        <!-- Thai -->
+        <article class="menu-card" data-cat="thai">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Thai Green Curry" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/2233729/pexels-photo-2233729.jpeg?auto=compress&cs=tinysrgb&h=900';" /></div>
+          <div class="body">
+            <h3>Thai Green Curry</h3>
+            <p class="muted">Herbal, creamy, fresh kick.</p>
+            <p class="price">₹389</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+        <article class="menu-card" data-cat="thai">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/2233729/pexels-photo-2233729.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Pad Thai" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&h=900';" /></div>
+          <div class="body">
+            <h3>Pad Thai</h3>
+            <p class="muted">Tamarind, peanuts, lime.</p>
+            <p class="price">₹349</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+
+        <!-- Korean -->
+        <article class="menu-card" data-cat="korean">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/5694395/pexels-photo-5694395.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Bibimbap" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&h=900';" /></div>
+          <div class="body">
+            <h3>Bibimbap</h3>
+            <p class="muted">Crisp veg, egg, gochujang.</p>
+            <p class="price">₹369</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+
+        <!-- Vietnamese -->
+        <article class="menu-card" data-cat="vietnamese">
+          <div class="media"><img loading="lazy" src="https://images.pexels.com/photos/255501/pexels-photo-255501.jpeg?auto=compress&cs=tinysrgb&h=900" alt="Pho" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/1507663/pexels-photo-1507663.jpeg?auto=compress&cs=tinysrgb&h=900';" /></div>
+          <div class="body">
+            <h3>Pho</h3>
+            <p class="muted">Bright broth, fresh herbs.</p>
+            <p class="price">₹359</p>
+            <button class="btn btn-primary mt-3" onclick="openOrder()">Order Now</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="section" style="background:#0b0c10">
+    <div class="container">
+      <div>
+        <div class="badge">Inside Taiken</div>
+        <h2>Gallery</h2>
+        <p class="muted-2" style="max-width:640px">A mix of food shots, ambience and service moments.</p>
+      </div>
+    </div>
+    <!-- NEW: Gallery wrapped for sliding animation -->
+    <div class="gallery-wrap mt-8">
+        <div class="gallery" id="gallery-container">
+            <!-- Images will be duplicated by JS for seamless loop -->
+        </div>
+    </div>
+  </section>
+
+  <!-- Our Team (corporate style with names) -->
+  <section id="team" class="section">
+    <div class="team-wrap container">
+      <div>
+        <div class="badge">Team</div>
+        <h2>Our Team</h2>
+        <p class="muted-2" style="max-width:640px">People you’ll see on the floor and in the kitchen — professional, warm, and present.</p>
+      </div>
+      <div class="team-grid mt-8">
+        <div class="team-card">
+          <img class="avatar" loading="lazy" src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=600" alt="Rohit Iyer headshot" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Rohit+Iyer&background=0B0C10&color=fff&size=256';" />
+          <div class="member-name">Rohit Iyer</div>
+          <div class="member-role">General Manager</div>
+        </div>
+        <div class="team-card">
+          <img class="avatar" loading="lazy" src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&h=600" alt="Chef Mei Lin headshot" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Mei+Lin&background=0B0C10&color=fff&size=256';" />
+          <div class="member-name">Chef Mei Lin</div>
+          <div class="member-role">Head Chef</div>
+        </div>
+        <div class="team-card">
+          <img class="avatar" loading="lazy" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&h=600" alt="Ananya Shah headshot" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Ananya+Shah&background=0B0C10&color=fff&size=256';" />
+          <div class="member-name">Ananya Shah</div>
+          <div class="member-role">Operations Lead</div>
+        </div>
+        <div class="team-card">
+          <img class="avatar" loading="lazy" src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&h=600" alt="Arjun Verma headshot" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Arjun+Verma&background=0B0C10&color=fff&size=256';" />
+          <div class="member-name">Arjun Verma</div>
+          <div class="member-role">Sushi Chef</div>
+        </div>
+        <div class="team-card">
+          <img class="avatar" loading="lazy" src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&h=600" alt="Neel Kapadia headshot" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Neel+Kapadia&background=0B0C10&color=fff&size=256';" />
+          <div class="member-name">Neel Kapadia</div>
+          <div class="member-role">Floor Manager</div>
+        </div>
+        <div class="team-card">
+          <img class="avatar" loading="lazy" src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&h=600" alt="Sara Fernandes headshot" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Sara+Fernandes&background=0B0C10&color=fff&size=256';" />
+          <div class="member-name">Sara Fernandes</div>
+          <div class="member-role">Guest Relations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section" style="background:#0b0c10">
+    <div class="container">
+      <div>
+        <div class="badge">Guests say</div>
+        <h2>What people love</h2>
+      </div>
+      <div class="testis mt-8">
+        <article class="testi">
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+          <p class="muted-2 mt-2">Clean flavours and quick service. Ramen was spot on and the team was warm.</p>
+          <p class="mt-2"><strong>Priya S.</strong> · Pune</p>
+        </article>
+        <article class="testi">
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+          <p class="muted-2 mt-2">Sushi rolls that actually taste fresh. Good value for a regular dinner spot.</p>
+          <p class="mt-2"><strong>Aditya P.</strong> · Kharadi</p>
+        </article>
+        <article class="testi">
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+          <p class="muted-2 mt-2">Dim sum and green curry were favourites. Family friendly, not fussy.</p>
+          <p class="mt-2"><strong>Neha K.</strong> · Pune</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section" style="background:#0b0c10">
+    <div class="container contact-grid">
+      <div>
+        <div class="badge">Contact</div>
+        <h2>We’re in Kharadi</h2>
+        <div class="mt-3 muted-2">
+          <p>📍 Taiken — Ground Floor, Restaurant # 4, Nyati Plaza, Kharadi, Pune, Maharashtra 411014</p>
+          <p class="mt-2">📞 <a href="tel:+919175910855">+91 91759 10855</a></p>
+          <p class="mt-2">✉️ <a href="mailto:career@taikenpanasian.com">career@taikenpanasian.com</a></p>
+        </div>
+      </div>
+      <iframe class="map" title="Map to Taiken" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Nyati%20Plaza%20Kharadi%20Pune&output=embed"></iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <img src="https://taikenpanasian.com/img/logo.png" alt="Taiken Pan Asian" style="height:34px" />
+      <p id="copy">© <span id="year"></span> Taiken Pan Asian. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Sticky actions -->
+  <div class="sticky">
+    <div class="bar container">
+      <button class="btn btn-primary" onclick="openOrder()">Order Now</button>
+      <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="https://wa.me/919175910855?text=Hi%20Taiken%2C%20I’d%20like%20to%20place%20an%20order.">WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- Order modal -->
+  <div id="orderModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+    <div class="sheet">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem">
+        <h3 id="orderTitle">Place your order</h3>
+        <button class="close" onclick="closeOrder()" aria-label="Close">✕</button>
+      </div>
+
+      <form id="orderForm" class="form-grid" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" aria-required="true" />
+          <div class="error-msg" id="err-name">Please enter your name (min 2 characters).</div>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" placeholder="10–15 digits" aria-required="true" />
+          <div class="error-msg" id="err-phone">Please enter a valid phone number.</div>
+        </div>
+        <div class="field">
+          <label for="type">Order Type</label>
+          <select id="type" name="type" aria-required="true">
+            <option value="Delivery">Delivery</option>
+            <option value="Pickup">Pickup</option>
+            <option value="Dine-in Reservation">Dine-in Reservation</option>
+          </select>
+          <div class="error-msg" id="err-type">Please select an order type.</div>
+        </div>
+        <div class="field">
+          <label for="items">Items</label>
+          <textarea id="items" name="items" rows="4" placeholder="List items and quantities"></textarea>
+          <div class="error-msg" id="err-items">Please list at least one item.</div>
+        </div>
+        <div class="field">
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Allergies, spice level, cutlery preference"></textarea>
+        </div>
+        <div class="sheet-actions">
+          <button type="button" class="btn btn-ghost" onclick="closeOrder()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="sr-only" aria-live="polite" id="live"></div>
+      </form>
+
+      <div id="thanks" style="display:none">
+        <p class="muted-2">Your request is noted. We’ll contact you soon to confirm.</p>
+        <div class="mt-3" style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a id="waLink" class="btn btn-ghost" target="_blank" rel="noreferrer">Send on WhatsApp →</a>
+          <button class="btn btn-primary" onclick="closeOrder()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast popup -->
+  <div id="toast" class="toast"><span class="tick">✔</span><span id="toastText">Great! Thank you for your order request.</span></div>
+
+  <script>
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return; const y = el.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({top:y, behavior:'smooth'});
+    }
+    function toggleMobile(){
+      const m = document.getElementById('mobile');
+      m.classList.toggle('open');
+    }
+    function go(id){ toggleMobile(); scrollToId(id); }
+
+    // --- Menu filters ---
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('.menu-card');
+    chips.forEach(c => c.addEventListener('click', () => {
+      chips.forEach(ch => {
+        ch.classList.remove('active');
+        ch.setAttribute('aria-selected', 'false');
+      });
+      c.classList.add('active');
+      c.setAttribute('aria-selected', 'true');
+      const f = c.dataset.filter;
+      cards.forEach(card => {
+        const show = (f === 'all') || card.dataset.cat === f;
+        card.style.display = show ? '' : 'none';
+      });
+    }));
+
+    // --- Order modal, validation & toast ---
+    const modal = document.getElementById('orderModal');
+    const form = document.getElementById('orderForm');
+    const thanks = document.getElementById('thanks');
+    const waLink = document.getElementById('waLink');
+    const live = document.getElementById('live');
+
+    function openOrder(){ modal.classList.add('open'); setTimeout(()=>document.getElementById('name').focus(), 50); }
+    function closeOrder(){ modal.classList.remove('open'); form.reset(); hideErrors(); thanks.style.display='none'; form.style.display='grid'; document.getElementById('orderTitle').textContent='Place your order'; }
+
+    function hideErrors(){
+      ['name','phone','type','items'].forEach(id => {
+        document.getElementById(id).classList.remove('error');
+        const em = document.getElementById('err-'+id);
+        if(em) em.classList.remove('show');
+      });
+    }
+
+    function validate(){
+      hideErrors();
+      let ok = true; let first = null;
+      const name = document.getElementById('name');
+      const phone = document.getElementById('phone');
+      const type = document.getElementById('type');
+      const items = document.getElementById('items');
+
+      if(!name.value || name.value.trim().length < 2){
+        ok = false; name.classList.add('error'); document.getElementById('err-name').classList.add('show'); first = first || name;
+      }
+      const digits = (phone.value||'').replace(/\D/g,'');
+      if(digits.length < 10 || digits.length > 15){
+        ok = false; phone.classList.add('error'); document.getElementById('err-phone').classList.add('show'); first = first || phone;
+      }
+      if(!type.value){
+        ok = false; type.classList.add('error'); document.getElementById('err-type').classList.add('show'); first = first || type;
+      }
+      if(!items.value || items.value.trim().length < 2){
+        ok = false; items.classList.add('error'); document.getElementById('err-items').classList.add('show'); first = first || items;
+      }
+
+      if(!ok && first){ first.focus(); live.textContent = 'Please fix the highlighted fields.'; }
+      return ok;
+    }
+
+    function buildWhatsApp(){
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const type = document.getElementById('type').value;
+      const items = document.getElementById('items').value.trim() || '—';
+      const notes = document.getElementById('notes').value.trim() || '—';
+      const msg = `Hi Taiken, here is my order request:\n\nName: ${name}\nPhone: ${phone}\nType: ${type}\nItems: ${items}\nNotes: ${notes}`;
+      const url = `https://wa.me/919175910855?text=${encodeURIComponent(msg)}`;
+      waLink.href = url;
+    }
+
+    function showToast(text){
+      const toast = document.getElementById('toast');
+      document.getElementById('toastText').textContent = text || 'Great! Thank you for your order request.';
+      toast.classList.add('show');
+      setTimeout(()=> toast.classList.remove('show'), 3200);
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!validate()) return;
+      buildWhatsApp();
+      form.style.display = 'none';
+      thanks.style.display = 'block';
+      document.getElementById('orderTitle').textContent = 'Thank you';
+      showToast('🎉 Great! Your order request is ready to send on WhatsApp.');
+    });
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeOrder(); });
+    // Esc to close
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modal.classList.contains('open')) closeOrder(); });
+    
+    // --- NEW: Gallery setup for sliding animation ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const galleryImages = [
+            { src: "https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&h=600", alt: "Sushi platter" },
+            { src: "https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg?auto=compress&cs=tinysrgb&h=600", alt: "Asian noodles" },
+            { src: "https://images.pexels.com/photos/4553120/pexels-photo-4553120.jpeg?auto=compress&cs=tinysrgb&h=600", alt: "Street stir fry" },
+            { src: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&h=600", alt: "Chopsticks" },
+            { src: "https://images.pexels.com/photos/4001872/pexels-photo-4001872.jpeg?auto=compress&cs=tinysrgb&h=600", alt: "Sushi board" },
+            { src: "https://images.pexels.com/photos/3535382/pexels-photo-3535382.jpeg?auto=compress&cs=tinysrgb&h=600", alt: "Restaurant ambience" },
+            { src: "https://images.pexels.com/photos/3297803/pexels-photo-3297803.jpeg?auto=compress&cs=tinysrgb&h=600", alt: "Ramen bowl" },
+            { src: "https://images.pexels.com/photos/888721/pexels-photo-888721.jpeg?auto=compress&cs=tinysrgb&h=600", alt: "Dim sum" }
+        ];
+
+        const galleryContainer = document.getElementById('gallery-container');
+        const allImages = [...galleryImages, ...galleryImages]; // Duplicate for seamless loop
+
+        allImages.forEach(imgData => {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            const img = document.createElement('img');
+            img.loading = 'lazy';
+            img.src = imgData.src;
+            img.alt = imgData.alt;
+            div.appendChild(img);
+            galleryContainer.appendChild(div);
+        });
+    });
+
+  </script>
+</body>
+</html>
