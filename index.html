@@ -13,12 +13,14 @@
       /* Premium matte palette */
       --bg:#0a0b0e;          /* deep graphite */
       --panel:#0c0d11;       /* panels/sheets */
-      --muted:#a1a1aa; 
-      --muted-2:#d4d4d8; 
-      --card:#0e1014; 
+      --muted:#a1a1aa;
+      --muted-2:#d4d4d8;
+      --card:#0e1014;
       --ring:rgba(255,255,255,.10);
-      --accent:#fbbf24; 
-      --accent-2:#fde68a; 
+      /* Replaced yellow accent with brand green across the site */
+      --brand-green: #425225;
+      --accent: var(--brand-green);
+      --accent-2: #8aa16a;
       --white:#fff; 
       --black:#000;
       --max:1200px; 
@@ -26,7 +28,6 @@
       --danger:#ef4444; 
       --success:#22c55e;
       /* NEW: Brand color from user */
-      --brand-green: #425225;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth; scroll-padding-top:90px}
@@ -46,7 +47,7 @@
     h2{font-size:clamp(2.1rem,3.2vw,3rem);font-weight:700}
     h3{font-size:clamp(1.3rem,2vw,1.6rem);font-weight:600}
     p{margin:.6rem 0}
-    .badge{letter-spacing:.25em;text-transform:uppercase;font-size:.72rem;color:#fde68a}
+    .badge{letter-spacing:.25em;text-transform:uppercase;font-size:.72rem;color:var(--accent-2)}
     
     /* NEW: Typography underline effect for hero and section titles */
     .hero h1, #story h2 {
@@ -88,7 +89,7 @@
         color:var(--white);
     }
     .chip:focus{
-        outline:2px solid rgba(251,191,36,.12);
+        outline:2px solid rgba(66,82,37,.12);
         outline-offset:2px;
         color:var(--white);
     }
@@ -137,12 +138,12 @@
     }
     .brand{display:flex;align-items:center;gap:.75rem}
     .brand img{height:42px}
-    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;gap:1rem}
     .burger{display:none;background:transparent;border:0;color:#fff;padding:.6rem;border-radius:999px}
     @media (max-width: 860px){.nav{display:none}.burger{display:inline-flex}}
     .mobile{display:none;border-top:1px solid var(--ring);background:rgba(8,9,12,.95)}
     .mobile.open{display:block}
-    .mobile a,.mobile button{display:block;width:100%;text-align:left;padding:.9rem 0;color:#e5e5e5;background:none;border:0;text-decoration:none}
+    .mobile a,.mobile button{display:block;width:100%;text-align:left;padding:.95rem 0;margin:0;color:#e5e5e5;background:none;border:0;text-decoration:none}
 
     /* Hero */
     .hero{position:relative;min-height:92vh;display:grid;place-items:center;overflow:hidden}
@@ -158,7 +159,7 @@
     .tiles{display:grid;gap:1rem}
     @media (min-width:600px){.tiles{grid-template-columns:repeat(3,1fr)}}
     .tile{border:1px solid var(--ring);border-radius:var(--radius);padding:1.1rem;background:rgba(255,255,255,.04)}
-    .tile .icon{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:999px;background:rgba(251,191,36,.2);margin-bottom:.5rem}
+    .tile .icon{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:999px;background:rgba(66,82,37,.18);margin-bottom:.5rem}
     .muted{color:var(--muted)}
 
     /* Image strips (adjusted for horizontal layout) */
@@ -326,7 +327,10 @@
     .map{width:100%;height:340px;border:1px solid var(--ring);border-radius:var(--radius)}
 
     /* Footer */
-    .footer{border-top:1px solid var(--ring);padding:2.2rem 0;color:#a3a3a3}
+    .footer{border-top:1px solid var(--ring);padding:2.2rem 0;color:var(--muted-2)}
+    .footer .made-by{margin:0;color:var(--accent);font-size:0.95rem;font-weight:600}
+    .footer img{height:34px}
+    .footer .container{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
     /* Sticky actions */
     .sticky{position:fixed;left:0;right:0;bottom:0;z-index:60}
@@ -362,7 +366,7 @@
     .muted-2{color:var(--muted-2)}
   </style>
 </head>
-<body>
+  <body>
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
@@ -405,7 +409,7 @@
       <div class="badge">A taste of Asia</div>
       <h1>Discover the art of Asian flavours at <span style="color:var(--accent)">Taiken</span></h1>
       <p class="lead">From sushi and ramen to Thai curries, dim sum, Korean favourites and Vietnamese pho — premium ingredients, familiar comfort, modern craft.</p>
-      <div class="mt-3">
+      <div class="mt-3 btn-row">
         <a href="#menu" class="btn btn-primary">Explore Menu</a>
         <a target="_blank" rel="noreferrer" href="https://wa.me/919175910855?text=Hi%20Taiken%2C%20I’d%20like%20to%20place%20an%20order." class="btn btn-ghost">Order on WhatsApp</a>
       </div>
@@ -428,7 +432,8 @@
       <div class="story-media">
         <!-- Why Pune -->
         <div class="strip">
-          <img src="https://images.pexels.com/photos/1532771/pexels-photo-1532771.jpeg?auto=compress&cs=tinysrgb&h=1200" alt="Pune city" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/356830/pexels-photo-356830.jpeg?auto=compress&cs=tinysrgb&h=1200';" />
+          <!-- REPLACED: use an urban / Pune-appropriate image (no beach) -->
+          <img src="https://images.pexels.com/photos/356830/pexels-photo-356830.jpeg?auto=compress&cs=tinysrgb&h=1200" alt="Pune city" onerror="this.onerror=null;this.src='https://images.pexels.com/photos/1532771/pexels-photo-1532771.jpeg?auto=compress&cs=tinysrgb&h=1200';" />
           <div class="veil"></div>
           <div class="inner">
             <h3 style="color:var(--accent)">Why Pune</h3>
@@ -693,20 +698,23 @@
         </div>
       </div>
       <iframe class="map" title="Map to Taiken" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Nyati%20Plaza%20Kharadi%20Pune&output=embed"></iframe>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-      <img src="https://taikenpanasian.com/img/logo.png" alt="Taiken Pan Asian" style="height:34px" />
+   
+   
+   <footer class="footer">
+    <div class="container">
+      <img src="https://taikenpanasian.com/img/logo.png" alt="Taiken Pan Asian" />
       <p id="copy">© <span id="year"></span> Taiken Pan Asian. All rights reserved.</p>
-      <p class="made-by" style="margin:0;color:var(--muted-2);font-size:0.95rem">
+      <p class="made-by">
         Made with <span aria-hidden="true">❤️</span> by
-        <a href="https://sphurit.com/" target="_blank" rel="noopener noreferrer" style="color:var(--muted-2);text-decoration:underline">Sphurit</a>
+        <a href="https://sphurit.com/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline">Sphurit</a>
       </p>
     </div>
   </footer>
+ </div>
+  </section>
+
+  <!-- Footer -->
+  
 
   <!-- Sticky actions -->
   <div class="sticky">
